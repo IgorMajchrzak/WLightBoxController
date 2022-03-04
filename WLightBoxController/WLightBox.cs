@@ -29,7 +29,7 @@
                 throw new Exception("Błąd połączenia.", ex);
             }
         }
-        public async Task EstablishConnection(string ip)
+        public async Task EstablishConnectionAsync(string ip)
         {
             try
             {

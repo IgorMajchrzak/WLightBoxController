@@ -54,7 +54,7 @@ namespace WLightBoxController
             {
                 try
                 {
-                    await _wLightBoxObject.EstablishConnection(device);
+                    await _wLightBoxObject.EstablishConnectionAsync(device);
                 }
                 catch (Exception ex)
                 {
