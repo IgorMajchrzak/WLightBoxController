@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "43c13ccd-b2e8-4948-b27e-b7f3b9e57c96": {
+      "ProjectGuid": "43c13ccd-b2e8-4948-b27e-b7f3b9e57c96",
+      "DisplayName": "WLightBoxController",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

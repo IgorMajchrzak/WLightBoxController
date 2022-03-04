@@ -1,0 +1,153 @@
+﻿<Window x:Class="WLightBoxController.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WLightBoxController"
+        mc:Ignorable="d"
+        Title="WLightBox Controller" Height="450" Width="800">
+    <Window.Resources>
+        <ControlTemplate x:Key="ConnectBtnTemplate" TargetType="Button">
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsPressed" Value="True">
+
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </Window.Resources>
+
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="7*"/>
+        </Grid.RowDefinitions>
+        <Grid x:Name="DeviceInfoGrid" Visibility="Visible" Background="AliceBlue">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="20*"/>
+                <ColumnDefinition Width="3*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="DeviceNameTbl" Grid.Column="1" Text="Nazwa urządzenia: My BleBox device name" />
+            <TextBlock x:Name="DeviceTypeTbl" Grid.Column="1" Grid.Row="1" Text="Urządzenie: wLightBox_v3" />
+            <TextBlock x:Name="HwVersionTbl" Grid.Column="1" Grid.Row="2" Text="Wersja urządzenia: 9.1d" />
+            <TextBlock x:Name="FwVersionTbl" Grid.Column="1" Grid.Row="3" Text="Wersja oprogramowania: 0.987" />
+            <TextBlock x:Name="DeviceAddressTbl" Grid.Column="1" Grid.Row="4" Text="Adres w sieci: 192.168.1.11" />
+            <TextBlock x:Name="SsidTbl" Grid.Column="1" Grid.Row="5" Text="Nazwa podłączonej sieci: Wifi_Name" />
+            <TextBlock Grid.Column="2" Text="Połącz z siecią:" />
+            <TextBox x:Name="SsidInputTbx" Grid.Column="2" Grid.Row="1" AcceptsReturn="False" />
+            <TextBlock Grid.Column="2" Grid.Row="2" Text="Hasło:" />
+            <PasswordBox x:Name="NetwordPasswdInputTbx" Grid.Column="2" Grid.Row="3" />
+            <Button x:Name="NetworkConnectBtn" Grid.Column="2" Grid.Row="4" Content="Połącz" HorizontalAlignment="Left" MinWidth="200" Click="NetworkConnectBtn_Click"/>
+            <Button x:Name="NetworkDisconnectBtn" Grid.Column="2" Grid.Row="5" Content="Rozłącz od obecnej sieci." HorizontalAlignment="Left" MinWidth="200" Click="NetworkDisconnectBtn_Click"/>
+
+        </Grid>
+        <Grid x:Name="SettingsGrid" Grid.Row="1" Visibility="Visible">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="8*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="12*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Grid.Column="1" Grid.Row="1" Text="Czerwony" HorizontalAlignment="Center" />
+            <TextBlock x:Name="RedAmountDisplayTbl" Grid.Column="1" Grid.Row="2" Text="0" HorizontalAlignment="Center" />
+            <Slider x:Name="RedAmountSlider" Grid.Column="1" Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Maximum="255" SmallChange="1" ValueChanged="Slider_ValueChanged"/>
+            <TextBlock Grid.Column="2" Grid.Row="1" Text="Zielony" HorizontalAlignment="Center" />
+            <TextBlock x:Name="GreenAmountDisplayTbl" Grid.Column="2" Grid.Row="2" Text="0" HorizontalAlignment="Center" />
+            <Slider x:Name="GreenAmountSlider" Grid.Column="2" Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Maximum="255" SmallChange="1" ValueChanged="Slider_ValueChanged"/>
+            <TextBlock Grid.Column="3" Grid.Row="1" Text="Niebieski" HorizontalAlignment="Center" />
+            <TextBlock x:Name="BlueAmountDisplayTbl" Grid.Column="3" Grid.Row="2" Text="0" HorizontalAlignment="Center" />
+            <Slider x:Name="BlueAmountSlider" Grid.Column="3" Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Maximum="255" SmallChange="1" ValueChanged="Slider_ValueChanged"/>
+
+            <TextBlock Grid.Column="4" Grid.Row="0" Grid.ColumnSpan="2" Text="Biały" HorizontalAlignment="Center" />
+            <TextBlock Grid.Column="4" Grid.Row="1" Text="Ciepły" HorizontalAlignment="Center" />
+            <TextBlock x:Name="WarmWhiteAmountDisplayTbl" Grid.Column="4" Grid.Row="2" Text="0" HorizontalAlignment="Center" />
+            <Slider x:Name="WarmWhiteAmountSlider" Grid.Column="4" Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Maximum="255" SmallChange="1" ValueChanged="Slider_ValueChanged"/>
+            <TextBlock Grid.Column="5" Grid.Row="1" Text="Zimny" HorizontalAlignment="Center" />
+            <TextBlock x:Name="ColdWhiteDisplayTbl" Grid.Column="5" Grid.Row="2" Text="0" HorizontalAlignment="Center" />
+            <Slider x:Name="ColdWhiteAmountSlider" Grid.Column="5" Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Maximum="255" SmallChange="1" ValueChanged="Slider_ValueChanged"/>
+
+            <TextBlock Grid.Column="7" Grid.Row="0" Grid.ColumnSpan="2" Text="Czas przejścia" HorizontalAlignment="Center" />
+            <TextBlock Grid.Column="7" Grid.Row="1" Text="Koloru" HorizontalAlignment="Center" />
+            <TextBlock x:Name="ColorFadeDisplayTbl" Grid.Column="7" Grid.Row="2" Text="500" HorizontalAlignment="Center" />
+            <Slider x:Name="ColorFadeSlider" Grid.Column="7" Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Minimum="25" Maximum="5000" SmallChange="1" Value="500" ValueChanged="Slider_ValueChanged"/>
+            <TextBlock Grid.Column="8" Grid.Row="1" Text="Efektu" HorizontalAlignment="Center" />
+            <TextBlock x:Name="EffectFadeDisplayTbl" Grid.Column="8" Grid.Row="2" Text="500" HorizontalAlignment="Center" />
+            <Slider x:Name="EffectFadeSlider" Grid.Column="8" Grid.Row="3" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Minimum="25" Maximum="5000" SmallChange="1" Value="500" ValueChanged="Slider_ValueChanged"/>
+            <TextBlock Grid.Column="9" Grid.Row="0" Grid.ColumnSpan="2" Text="Czas trwania" HorizontalAlignment="Center" />
+            <TextBlock Grid.Column="9" Grid.Row="1" Grid.ColumnSpan="2" Text="efektu" HorizontalAlignment="Center" />
+            <TextBlock x:Name="EffectStepDisplayTbl" Grid.Column="9" Grid.Row="2" Grid.ColumnSpan="2" Text="500" HorizontalAlignment="Center" />
+            <Slider x:Name="EffectStepSlider" Grid.Column="9" Grid.Row="3" Grid.ColumnSpan="2" Orientation="Vertical" HorizontalAlignment="Center" Grid.RowSpan="2" Margin="0,0,0,20" Minimum="25" Maximum="5000" SmallChange="1" Value="500" ValueChanged="Slider_ValueChanged"/>
+
+            <TextBlock Grid.Column="12" Grid.Row="0" Text="Efekt:" HorizontalAlignment="Center" />
+            <Menu Grid.Column="12" Grid.Row="1">
+                <MenuItem x:Name="SelectEffectId0Btn" Header="0" Click="SelectEffectIdBtn_Click" Background="Lime"/>
+                <MenuItem x:Name="SelectEffectId1Btn" Header="1" Click="SelectEffectIdBtn_Click" />
+                <MenuItem x:Name="SelectEffectId2Btn" Header="2" Click="SelectEffectIdBtn_Click" />
+                <MenuItem x:Name="SelectEffectId3Btn" Header="3" Click="SelectEffectIdBtn_Click" />
+                <MenuItem x:Name="SelectEffectId4Btn" Header="4" Click="SelectEffectIdBtn_Click" />
+                <MenuItem x:Name="SelectEffectId5Btn" Header="5" Click="SelectEffectIdBtn_Click" />
+                <MenuItem x:Name="SelectEffectId6Btn" Header="6" Click="SelectEffectIdBtn_Click" />
+                <MenuItem x:Name="SelectEffectId7Btn" Header="7" Click="SelectEffectIdBtn_Click" />
+            </Menu>
+
+
+            <Grid Grid.Row="3" Grid.Column="12" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                    <RowDefinition Height="1*"/>
+                </Grid.RowDefinitions>
+
+                <Button x:Name="ApplyLightingSettingsBtn" Content="Zastosuj zmiany" Click="ApplyLightingSettingsBtn_Click"/>
+
+                <Border Grid.Row="3" Grid.RowSpan="6" BorderBrush="Black" BorderThickness="1,1,1,1" />
+                <TextBlock Grid.Row="3" Text="Obecne wartości:"/>
+                <TextBlock x:Name="CurrentColorDisplayTbl" Grid.Row="4" Text="Kolor: 0000000000"/>
+                <TextBlock x:Name="CurrentColorFadeDisplayTbl" Grid.Row="5" Text="Czas przejścia koloru: 500ms"/>
+                <TextBlock x:Name="CurrentEffectIdDisplayTbl" Grid.Row="6" Text="Efekt: 0"/>
+                <TextBlock x:Name="CurrentEffectFadeDisplayTbl" Grid.Row="7" Text="Czas przejścia efektu: 500ms"/>
+                <TextBlock x:Name="CurrentEffectStepDisplayTbl" Grid.Row="8" Text="Czas trwania efektu: 500ms"/>
+            </Grid>
+        </Grid>
+
+
+        <Grid x:Name="NotificationGrid" Grid.RowSpan="2" Panel.ZIndex="99" Background="LightBlue" Visibility="Collapsed">
+            <TextBlock x:Name="NotificationTbl" TextWrapping="Wrap" Text="BRAK POŁĄCZENIA" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="24"/>
+        </Grid>
+
+    </Grid>
+</Window>
